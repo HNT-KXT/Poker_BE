@@ -1,7 +1,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-const url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@project1.tz3goqw.mongodb.net/?retryWrites=true&w=majority`;
+const url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@project1.tz3goqw.mongodb.net/poker`;
 
 async function connect() {
   try {
