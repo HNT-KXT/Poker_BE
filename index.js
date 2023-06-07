@@ -32,7 +32,7 @@ const socketIo = require('socket.io')(server, {
 });
 // Client connect to server
 socketIo.on("connection", (socket) => {
-  routeSocket(socket);
+  routeSocket(socket, socketIo);
 });
 
 server.listen(PORT, ()=>{

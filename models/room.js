@@ -3,13 +3,22 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema(
   {
+    roomId: {
+      type: String, require: true, trim: true
+    },
     members: [
       {
-        type: Schema.Types.ObjectId, ref: 'Player'
+        type: String, ref: 'Player'
       }
     ],
     owner: {
-      type: Schema.Types.ObjectId, ref: 'Player'
+      type: String, ref: 'Player'
+    },
+    type: {
+      type: Number,
+    },
+    name: {
+      type: String, require: true, trim: true
     }
   },
 )

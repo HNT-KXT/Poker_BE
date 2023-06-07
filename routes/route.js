@@ -1,21 +1,28 @@
 const testController = require('../controller/test');
-const connectionController = require('../controller/connection');
-const playerController = require('../controller/player');
+const ConnectAndCreateController = require('../controller/ConnectAndCreate');
 
 function routeAPI(app) {
   app.get('/test', testController.test);
 
 }
 
-function routeSocket(socket) {
+function routeSocket(socket, socketIo) {
   console.log("New client connected: " + socket.id);
   // Send socket id to client
   socket.emit("getId", socket.id);
   // Create temporary player account
-  socket.on('createPlayer', (data) => playerController.createPlayer(data, socket));
+  socket.on('createPlayer', (data) => ConnectAndCreateController.createPlayer(data, socket));
   
+  socket.on('createRoom', (data) => ConnectAndCreateController.createRoom(data, socket));
+
+  // socket.on('joinRoom', () => {
+  //   socket.join('abcroom');
+  //   socketIo.to('abcroom').emit('roomSend', 'okok');
+  // })
+
+  socket.on('joinRoom', (data) => ConnectAndCreateController.joinRoom(data, socket));
   
-  socket.on("disconnect", () => connectionController.disconnect(socket));
+  socket.on("disconnect", () => ConnectAndCreateController.disconnect(socket));
 }
 
 module.exports = { routeAPI, routeSocket }

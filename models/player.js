@@ -6,6 +6,9 @@ const schema = new Schema(
     userId: {
       type: String, require: true, trim: true
     },
+    roomId: {
+      type: String
+    },
     name: {
       type: String, require: true, trim: true
     },
